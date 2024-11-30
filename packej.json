@@ -1,0 +1,18 @@
+{
+  "name": "truecaller-lookup",
+  "version": "1.0.0",
+  "description": "A simple Node.js application for TrueCaller number lookup.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "raganork-bot": "^3.0.1"
+  }
+}
+
+
+
