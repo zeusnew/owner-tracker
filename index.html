@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrueCaller Lookup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      width: 80%;
+      text-align: left;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <h1>TrueCaller Number Lookup</h1>
+  <form id="lookupForm">
+    <input type="text" id="phone" placeholder="Enter phone number" required>
+    <button type="submit">Search</button>
+  </form>
+  <div id="result"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    document.getElementById('lookupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const phone = document.getElementById('phone').value; // Get input phone number
+      try {
+        const response = await axios.post('http://localhost:3000/api/truecaller', { phone }); // Call backend API
+        document.getElementById('result').innerText = JSON.stringify(response.data, null, 2); // Display result
+      } catch (error) {
+        document.getElementById('result').innerText = error.response.data.error || 'Error occurred'; // Handle errors
+      }
+    });
+  </script>
+</body>
+</html>
